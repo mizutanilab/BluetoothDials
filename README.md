@@ -55,7 +55,7 @@ A few blank circuit boards are available (only for researchers of academic insti
 <tr><td>PCB connector housing</td><td>XHP-3</td><td>JST</td><td>12</td></tr>
 <tr><td>PCB connector housing</td><td>XHP-2</td><td>JST</td><td>1</td></tr>
 <tr><td>PCB connector contact</td><td>SXH-001T-P0.6</td><td>JST</td><td>38</td></tr>
-<tr><td>Pin header</td><td>6p</td><td>-</td><td>1</td></tr>
+<tr><td>Pin header</td><td>6 pin</td><td>-</td><td>1</td></tr>
 <tr><td>Enclosure</td><td>LC135-F4-W</td><td>Takachi</td><td>1</td></tr>
 <tr><td>  or</td><td>LC165H-M4-W</td><td>Takachi</td><td>1</td></tr>
 <tr><td>Nuts & bolts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5 each</td></tr>
@@ -79,5 +79,5 @@ We use connector cables to wire rotary encoders. This is because the encoders of
 ## Variations
 A portable model with a battery charging circuit. Its size is about 95 x 65 x 35 mm. It's equipped with wood knobs for the better usability. We purchased them as guitar knobs.   
 <IMG alt=overall src="pics/portableModel.png"><BR><br>
-This is one of the prototypes. You can make it without PCB like this. 
+This is one of the prototypes. You can make it without PCB like this.<BR> 
 <IMG alt=overall src="pics/prototype.png"> <IMG alt=overall src="pics/prototypeInside.png">
