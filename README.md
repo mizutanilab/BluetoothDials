@@ -25,7 +25,7 @@ There's nothing special. The MCU (PIC16F1828) receives signals from rotary encod
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
 Gerber files are available from the 'gerber' folder. <BR>
 
-##PCB and BOM
+## BOM
 <IMG alt=gerber src="pics/pcbtop.png"><BR>
 <IMG alt=gerber src="pics/pcbbottom.png"><BR>
 
@@ -39,7 +39,7 @@ Rubber bumpons on the device back are essential. Without these bumpons, the devi
 <IMG alt=overall src="pics/rubberBumpons.png"><BR>
 
 We use connector cables to wire rotary encoders. This is because the encoders often go wrong when we use the device on a daily basis, so we have to replace them on the spot. There would be other workarounds but this seems easiest and cheapest.  
-<IMG alt=inside src="pics/inside.png"><BR>
+<IMG alt=inside src="pics/inside200530.png"><BR>
 
 ## Variations
 A portable model with a battery charging circuit. Its size is about 95 x 65 x 35 mm. It's equipped with wood knobs for the better usability. We purchased them as guitar knobs.   
