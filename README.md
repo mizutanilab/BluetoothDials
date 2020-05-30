@@ -79,3 +79,5 @@ We use connector cables to wire rotary encoders. This is because the encoders of
 ## Variations
 A portable model with a battery charging circuit. Its size is about 95 x 65 x 35 mm. It's equipped with wood knobs for the better usability. We purchased them as guitar knobs.   
 <IMG alt=overall src="pics/portableModel.png"><BR><br>
+This is one of the prototypes. You can make it without PCB like this. 
+<IMG alt=overall src="pics/prototype.png"> <IMG alt=overall src="pics/prototypeInside.png">
