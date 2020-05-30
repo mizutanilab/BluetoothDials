@@ -4,16 +4,16 @@ The former RS232C model is <a href="https://github.com/mizutanilab/BluetoothDial
 
 <IMG alt=overall src="pics/overall.png"><BR>
 
-Bluetooth Dials is a wireless input device for operating multiple parameters with dials and buttons. We use this device to rotate 3D structures, move them along the x/y/z axes, adjust the contrast and brightness, zoom in/out, move movie frames forward/backward, and so on. It has dials and buttons and sends your operation through its Bluetooth interface or USB port to your PC. In 1990's, dial/button boxes were commercially available from graphics workstation manufacturers, but today we can't find such devices. The most similar one is Microsoft Surface Dial, but it has only one dial and does not meet our needs. Bluetooth Dials is a wireless version of the historic dial/button box. It's compatible with our <a href="https://github.com/mizutanilab/RecView">RecView</a> and <a href="https://github.com/mizutanilab/MCTrace">MCTrace</a> softwares. We usually use a mouse with the right hand and this device with the left hand to operate our softwares.<br>
+Bluetooth Dials is a wireless input device for operating multiple parameters with dials and buttons. We use this device to rotate 3D structures, move them along the x/y/z axes, adjust the contrast and brightness, zoom in/out, move movie frames forward/backward, and so on. It has dials and buttons and sends your operation through its Bluetooth interface or USB port to your PC. In 1990's, dial/button boxes were commercially available from graphics workstation manufacturers, but today we can't find such devices. The most similar one is Microsoft Surface Dial, but it has only one knob, so does not meet our needs. Bluetooth Dials is a wireless version of the historic dial/button box. It's compatible with our <a href="https://github.com/mizutanilab/RecView">RecView</a> and <a href="https://github.com/mizutanilab/MCTrace">MCTrace</a> softwares. We usually use a mouse with the right hand and this device with the left hand to operate our softwares.<br>
 
 Six knobs are used for changing parameters. Two buttons are used for toggling some functions. The lower button is also used for turning on and off the device. The green LED blinks when the Bluetooth interface is ready, or turns on when the link is established.   
 
-The Bluetooth interface of this device is RN42 (Roving Networks / Microchip). Previously, we used dongles MM-BTUD43 (Sanwa Supply) as host-side interface. This dongle seems to use a CSR chip. Built-in Bluetooth interfaces of most of our laptop PCs also work well with the device. 
+The Bluetooth interface of this device is RN42 (Roving Networks / Microchip). Previously we used dongles MM-BTUD43 (Sanwa Supply) as host-side interface. This dongle seems to use a CSR chip. Built-in Bluetooth interfaces of most of our laptop PCs also work well with the device. 
 
 ## Firmware
-The firmware sends dial/button operations to a virtual COM port associated with this device. If the device is paired with your PC through Bluetooth or connected to a USB port, its COM port is listed in the Dialbox dialog of RecView and MCTrace. The virtual COM port number of the Bluetooth interface can also be found from: Bluetooth icon in the lower right -> show devices -> other options -> COM port tab.  
+The firmware sends dial/button operations to USB COM port or to virtual COM port associated with the Bluetooth interface. You can find the COM port in the Dialbox dialog of RecView and MCTrace. The virtual COM port number of the Bluetooth interface can also be found from: Bluetooth icon in the lower right -> show devices -> other options -> COM port tab.  
 
-In the default boot, Bluetooth sniffing with a 500 ms interval is enabled (RN42 command: SW,0320) to reduce the battery consumption, but a certain laptop seems not compatible with sniffing. The sniffing is disabled by pressing the lower button while setting batteries. If it's connected with a USB cable, the Bluetooth interface get turned off. 
+In the default boot, Bluetooth sniffing with a 500 ms interval is enabled (RN42 command: SW,0320) to reduce the battery consumption, but a certain laptop seems not compatible with sniffing. The sniffing is disabled by pressing the lower button while setting batteries. If it's connected with a USB cable, the Bluetooth interface gets turned off. 
 
 The original firmware had two modes: serial mode and keyboard mode, though the present release only runs in the serial mode for simplicity. The keyboard mode of the original firmware was enabled by pressing the upper button while setting batteries. In the keyboard mode (though it's not available), the device was recognized as a Bluetooth keyboard. Dial/button operations were treated as if they are keyboard inputs.  
 
@@ -22,9 +22,9 @@ The original firmware had two modes: serial mode and keyboard mode, though the p
 There's nothing special. The MCU (PIC16F1828) receives signals from rotary encoders (PEC11R, Bourns) and push buttons (B3F, Omron), and sends those information through the UART TX line to the Bluetooth module (RN42) and to the USB interface (FT230XS). The device operates with four AAA batteries, or with DC current draw from USB. <BR>
 
 ## PCB gerbers
+Gerber files are available from the 'gerber' folder. <BR>
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
 <IMG alt=gerber src="pics/pcbtop.png" width="45%" height="45%"> <IMG alt=gerber src="pics/pcbbottom.png" width="45%" height="45%"><BR>
-Gerber files are available from the 'gerber' folder. <BR>
 
 ## BOM
 <table>
@@ -47,18 +47,20 @@ Gerber files are available from the 'gerber' folder. <BR>
 <tr><td>Rotary encorder</td><td>PEC11R--4215K-N0024</td><td>Bourns</td><td>6</td></tr>
 <tr><td>Knob</td><td>RS PRO 777-7296</td><td>RS</td><td>6</td></tr>
 <tr><td>  or</td><td>11K5013-KMNB</td><td>Grayhill</td><td>6</td></tr>
-<tr><td>Tactile SW</td><td>TVDP01-G73BB with black cap</td><td>Zhejiang Jianfu Electronics</td><td>2</td></tr>
-<tr><td>USB connector</td><td>ZX62R-B-5P</td><td>Hirose</td><td>2</td></tr>
+<tr><td>Tactile SW</td><td>B3F + B32-3000</td><td>Omron</td><td>2 each</td></tr>
+<tr><td>  or</td><td>TVDP01-G73BB with black cap</td><td>Zhejiang Jianfu Electronics</td><td>2</td></tr>
+<tr><td>USB connector</td><td>ZX62R-B-5P</td><td>Hirose</td><td>1</td></tr>
+<tr><td>PCB connector header</td><td>B3B-XH-A(LF)(SN)</td><td>JST</td><td>6</td></tr>
+<tr><td>PCB connector header</td><td>B2B-XH-A(LF)(SN)</td><td>JST</td><td>1</td></tr>
 <tr><td>PCB connector housing</td><td>XHP-3</td><td>JST</td><td>12</td></tr>
 <tr><td>PCB connector housing</td><td>XHP-2</td><td>JST</td><td>1</td></tr>
 <tr><td>PCB connector contact</td><td>SXH-001T-P0.6</td><td>JST</td><td>38</td></tr>
-<tr><td>PCB connector header</td><td>B3B-XH-A(LF)(SN)</td><td>JST</td><td>6</td></tr>
-<tr><td>PCB connector header</td><td>B2B-XH-A(LF)(SN)</td><td>JST</td><td>1</td></tr>
 <tr><td>Pin header</td><td>6p</td><td>-</td><td>1</td></tr>
 <tr><td>Case</td><td>LC135-F4-W</td><td>Takachi</td><td>1</td></tr>
 <tr><td>  or</td><td>LC165H-M4-W</td><td>Takachi</td><td>1</td></tr>
 <tr><td>Bolts & nuts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5</td></tr>
 <tr><td>Spacer</td><td>3 mm x 5 mm height, plastic</td><td>-</td><td>2~5</td></tr>
+<tr><td>Rubber bumpon</td><td>SJ-5312</td><td>3M</td><td>2</td></tr>
 </table>
 
 ## Host side coding
