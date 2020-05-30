@@ -23,10 +23,16 @@ There's nothing special. The MCU (PIC16F1828) receives signals from rotary encod
 
 ## PCB gerbers
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
+<IMG alt=gerber src="pics/pcbtop.png" width="40%" height="40%"> <IMG alt=gerber src="pics/pcbbottom.png" width="40%" height="40%"><BR>
 Gerber files are available from the 'gerber' folder. <BR>
 
 ## BOM
-<IMG alt=gerber src="pics/pcbtop.png" width="50%" height="50%"> <IMG alt=gerber src="pics/pcbbottom.png" width="50%" height="50%"><BR>
+<table>
+<tr><th>Item</th><th>Description</th><th>Brand</th><th>QTY</th></tr>
+<tr><td>MCU</td><td>PIC16F1828</td><td>Microchip</td><td>1</td></tr>
+<tr><td>BT interaface</td><td>RN42</td><td>Microchip</td><td>1</td></tr>
+<tr><td>USB interaface</td><td>FT230XS</td><td>FTDI</td><td>1</td></tr>
+</table>
 
 ## Host side coding
 The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with terminal softwares or can be processed with dedicated host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
