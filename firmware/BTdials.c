@@ -22,18 +22,18 @@ __CONFIG(WRT_OFF & PLLEN_OFF & STVREN_OFF & BORV_19 & LVP_OFF);
 #define ENC4DIR PORTBbits.RB4
 #define ENC5CLK PORTBbits.RB5
 #define ENC5DIR PORTBbits.RB6
-#define ENC3FWD 'Q'
-#define ENC3REV 'W'
-#define ENC4FWD 'A'
-#define ENC4REV 'S'
-#define ENC5FWD 'Z'
-#define ENC5REV 'X'
-#define ENC0FWD 'R'
-#define ENC0REV 'E'
-#define ENC1FWD 'F'
-#define ENC1REV 'D'
-#define ENC2FWD 'V'
-#define ENC2REV 'C'
+#define ENC3FWD 'R'
+#define ENC3REV 'E'
+#define ENC4FWD 'F'
+#define ENC4REV 'D'
+#define ENC5FWD 'V'
+#define ENC5REV 'C'
+#define ENC0FWD 'W'
+#define ENC0REV 'Q'
+#define ENC1FWD 'A'
+#define ENC1REV 'S'
+#define ENC2FWD 'Z'
+#define ENC2REV 'X'
 #define SW1REL 'T'
 #define SW2REL 'G'
 //Bluetooth connection 1:connected 0:none
@@ -96,22 +96,6 @@ void initMCU(void){
 	PEIE=1;		// enable peripheral interrupts
 	GIE=1;		// turn on interrupts
 
-//UART 9600 baud
-	SPBRGH = 0;
-//9600 baud at 8 MHz
-	SPBRG = 12;
-	TXSTAbits.BRGH = 0;
-	BAUDCONbits.BRG16 = 0;
-//9600 baud at 4 MHz
-//	SPBRG = 103;
-//	TXSTAbits.BRGH = 1;
-//	BAUDCONbits.BRG16 = 1;
-	//Asynchronous
-	TXSTAbits.SYNC = 0;
-	RCSTAbits.SPEN = 1;
-	TXSTAbits.TX9 = 0;
-	TXSTAbits.TXEN = 1;
-
 //Ports
 	ANSELA = 0;//port A to be digital
 	ANSELB = 0;//port B to be digital
@@ -134,6 +118,23 @@ void initMCU(void){
 		ucMode = MODE_BLUETOOTH;
 		PORTAbits.RA5 = 0;//RN42 on
 	}
+
+//UART 9600 baud
+	SPBRGH = 0;
+//9600 baud at 8 MHz
+	SPBRG = 12;
+	TXSTAbits.BRGH = 0;
+	BAUDCONbits.BRG16 = 0;
+//9600 baud at 4 MHz
+//	SPBRG = 103;
+//	TXSTAbits.BRGH = 1;
+//	BAUDCONbits.BRG16 = 1;
+	//Asynchronous
+	TXSTAbits.SYNC = 0;
+	RCSTAbits.SPEN = 1;
+	TXSTAbits.TX9 = 0;
+	TXSTAbits.TXEN = 1;
+
 //	TRISAbits.TRISA2 = 1;//Bluetooth connection on:1 off:0 (RN42 GPIO2)
 	//RC4: UART TX
 	//RC5: UART RX
