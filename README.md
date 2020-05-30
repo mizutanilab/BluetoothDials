@@ -19,7 +19,7 @@ The original firmware had two modes: serial mode and keyboard mode, though the p
 
 ## Schematic
 <IMG alt=schematic src="pics/BluetoothDialsR7schematic.png"><BR>
-There's nothing special. The MCU (PIC16F1828) receives signals from rotary encoders (PEC11R, Bourns) and push buttons (B3F, Omron), and sends those information through the UART TX line to the Bluetooth module (RN42) and to the USB interface (FT230XS). The device operates with four AAA batteries, or with DC current draw from USB. <BR> 
+There's nothing special. The MCU (PIC16F1828) receives signals from rotary encoders (PEC11R, Bourns) and push buttons (B3F, Omron), and sends those information through the UART TX line to the Bluetooth module (RN42) and to the USB interface (FT230XS). The device operates with four AAA batteries, or with DC current draw from USB. You can omit either RN42 or FT230XS if it's not needed. <BR> 
 
 ## PCB gerbers
 Gerber files are available from the <a href="https://github.com/mizutanilab/BluetoothDials/tree/master/gerber">gerber</a> folder. <BR><BR>
