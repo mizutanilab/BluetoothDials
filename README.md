@@ -4,11 +4,11 @@ The former RS232C model is <a href="https://github.com/mizutanilab/BluetoothDial
 
 <IMG alt=overall src="pics/overall.png"><BR>
 
-Bluetooth Dials is a wireless input device for operating multiple parameters with dials and buttons. We use this device to rotate 3D structures, move them along the x/y/z axes, adjust the contrast and brightness, zoom in/out, move movie frames forward/backward, and so on. It has dials and buttons and sends your operation through its Bluetooth interface or USB port to your PC. In 1990's, dial/button boxes were commercially available from graphics workstation manufacturers, but today we can't find such devices. The most similar one is Microsoft Surface Dial, but it has only one knob, so does not meet our needs. Bluetooth Dials is a wireless version of the historic dial/button box. It's compatible with our <a href="https://github.com/mizutanilab/RecView">RecView</a> and <a href="https://github.com/mizutanilab/MCTrace">MCTrace</a> softwares. We usually use a mouse with the right hand and this device with the left hand to operate our softwares.<br>
+Bluetooth Dials is a wireless input device for operating multiple parameters with dials and buttons. We use this device to rotate 3D structures, move them along the x/y/z axes, adjust the contrast and brightness, zoom in/out, move movie frames forward/backward, and so on. It has dials and buttons and sends your operation through its Bluetooth interface or USB port to your PC. In 1990's, dial/button boxes were commercially available from graphics workstation manufacturers, but today we can't find such multiple-dial devices. The most similar one is Microsoft Surface Dial, but it has only one knob, so it does not meet our needs. Bluetooth Dials is a wireless version of the historic dial/button box. It's compatible with our <a href="https://github.com/mizutanilab/RecView">RecView</a> and <a href="https://github.com/mizutanilab/MCTrace">MCTrace</a> softwares. We usually use a mouse with the right hand and this device with the left hand to operate our softwares.<br>
 
 Six knobs are used for changing parameters. Two buttons are used for toggling some functions. The lower button is also used for turning on and off the device. The green LED blinks when the Bluetooth interface is ready, or turns on when the link is established.   
 
-The Bluetooth interface of this device is RN42 (Roving Networks / Microchip). Previously we used dongles MM-BTUD43 (Sanwa Supply) as host-side interface. This dongle seems to use a CSR chip. Built-in Bluetooth interfaces of most of our laptop PCs also work well with the device. 
+The Bluetooth interface of this device is RN42 (Roving Networks / Microchip). A host-side interface previously we used is MM-BTUD43 (Sanwa Supply) dongle that seems to have a CSR chip. Built-in Bluetooth interfaces of our laptop PCs also work well with the device. 
 
 ## Firmware
 The firmware sends dial/button operations to USB COM port or to virtual COM port associated with the Bluetooth interface. You can find the COM port in the Dialbox dialog of RecView and MCTrace. The virtual COM port number of the Bluetooth interface can also be found from: Bluetooth icon in the lower right -> show devices -> other options -> COM port tab.  
@@ -19,13 +19,13 @@ The original firmware had two modes: serial mode and keyboard mode, though the p
 
 ## Schematic
 <IMG alt=schematic src="pics/BluetoothDialsR7schematic.png"><BR>
-There's nothing special. The MCU (PIC16F1828) receives signals from rotary encoders (PEC11R, Bourns) and push buttons (B3F, Omron), and sends those information through the UART TX line to the Bluetooth module (RN42) and to the USB interface (FT230XS). The device operates with four AAA batteries, or with DC current draw from USB. <BR>
+There's nothing special. The MCU (PIC16F1828) receives signals from rotary encoders (PEC11R, Bourns) and push buttons (B3F, Omron), and sends those information through the UART TX line to the Bluetooth module (RN42) and to the USB interface (FT230XS). The device operates with four AAA batteries, or with DC current draw from USB. <BR> 
 
 ## PCB gerbers
-Gerber files are available from the 'gerber' folder. <BR>
+Gerber files are available from the <a href="https://github.com/mizutanilab/BluetoothDials/tree/master/gerber">gerber</a> folder. <BR><BR>
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
 <IMG alt=gerber src="pics/pcbtop.png" width="45%" height="45%"> <IMG alt=gerber src="pics/pcbbottom.png" width="45%" height="45%"><BR>
-A few PCB is available for academic researchers. 
+A few blank circuit boards are available (only for researchers of academic institutions).  
 
 ## BOM
 <table>
@@ -56,15 +56,16 @@ A few PCB is available for academic researchers.
 <tr><td>PCB connector housing</td><td>XHP-2</td><td>JST</td><td>1</td></tr>
 <tr><td>PCB connector contact</td><td>SXH-001T-P0.6</td><td>JST</td><td>38</td></tr>
 <tr><td>Pin header</td><td>6p</td><td>-</td><td>1</td></tr>
-<tr><td>Case</td><td>LC135-F4-W</td><td>Takachi</td><td>1</td></tr>
+<tr><td>Enclosure</td><td>LC135-F4-W</td><td>Takachi</td><td>1</td></tr>
 <tr><td>  or</td><td>LC165H-M4-W</td><td>Takachi</td><td>1</td></tr>
-<tr><td>Bolts & nuts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5 each</td></tr>
-<tr><td>Spacer</td><td>3 mm x 5 mm height, plastic</td><td>-</td><td>2~5</td></tr>
+<tr><td>Nuts & bolts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5 each</td></tr>
+<tr><td>Spacer</td><td>3 mm x 5 mm height, resin</td><td>-</td><td>2~5</td></tr>
 <tr><td>Rubber bumpon</td><td>SJ-5312</td><td>3M</td><td>2</td></tr>
 </table>
+You may also need tools, such as a crimping tool for XH connectors, a PIC programmer, and so on. 
 
 ## Host side coding
-The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with terminal softwares or can be processed with any host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
+The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with a terminal software or can be processed with any host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
 
 In the Bluetooth keyboard mode of the original version, the input characters come through as keyboard inputs, so they can be used as accelerator keys. By associating these characters with target routines, software functions are invoked by the dial/button operations without any additional coding.<BR>
 
@@ -72,7 +73,7 @@ In the Bluetooth keyboard mode of the original version, the input characters com
 Rubber bumpons on the device back are essential. Without these bumpons, the device itself rotates when you rotate knobs. We recommend SJ-5312 bumpons of 3M.  
 <IMG alt=overall src="pics/rubberBumpons.png"><BR>
 
-We use connector cables to wire rotary encoders. This is because the encoders often go wrong when we use the device on a daily basis. There would be other workarounds but this seems easiest and cheapest.  
+We use connector cables to wire rotary encoders. This is because the encoders often go wrong when we use the device on a daily basis. Wiring with connector cables makes it easy to replace rotary encoders. There would be other workarounds but this seems easiest and cheapest.  
 <IMG alt=inside src="pics/inside200530.png"><BR>
 
 ## Variations
