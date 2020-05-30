@@ -25,6 +25,7 @@ There's nothing special. The MCU (PIC16F1828) receives signals from rotary encod
 Gerber files are available from the 'gerber' folder. <BR>
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
 <IMG alt=gerber src="pics/pcbtop.png" width="45%" height="45%"> <IMG alt=gerber src="pics/pcbbottom.png" width="45%" height="45%"><BR>
+A few PCB is available for academic researchers. 
 
 ## BOM
 <table>
@@ -33,7 +34,7 @@ Gerber files are available from the 'gerber' folder. <BR>
 <tr><td>Bluetooth interface</td><td>RN42</td><td>Microchip</td><td>1</td></tr>
 <tr><td>USB interface</td><td>FT230XS</td><td>FTDI</td><td>1</td></tr>
 <tr><td>3V3 regulator</td><td>S-812C33AY-B-G</td><td>ABLIC</td><td>1</td></tr>
-<tr><td>PMOS FET</td><td>DMG3415U</td><td>Diodes</td><td>1</td></tr>
+<tr><td>PMOS FET</td><td>DMG3415U</td><td>Diodes Inc.</td><td>1</td></tr>
 <tr><td>LED</td><td>3 mm green LED</td><td>-</td><td>1</td></tr>
 <tr><td>Shottkey D</td><td>SD103A</td><td>PANJIT</td><td>1</td></tr>
 <tr><td>D</td><td>1N4148</td><td>Fairchild</td><td>1</td></tr>
@@ -44,11 +45,10 @@ Gerber files are available from the 'gerber' folder. <BR>
 <tr><td>R</td><td>560R</td><td>-</td><td>3</td></tr>
 <tr><td>R</td><td>27R</td><td>-</td><td>2</td></tr>
 <tr><td>EMI filter</td><td>DSS1NB32A103</td><td>Murata</td><td>1</td></tr>
-<tr><td>Rotary encorder</td><td>PEC11R--4215K-N0024</td><td>Bourns</td><td>6</td></tr>
+<tr><td>Rotary encorder</td><td>PEC11R-4215K-N0024</td><td>Bourns</td><td>6</td></tr>
 <tr><td>Knob</td><td>RS PRO 777-7296</td><td>RS</td><td>6</td></tr>
 <tr><td>  or</td><td>11K5013-KMNB</td><td>Grayhill</td><td>6</td></tr>
 <tr><td>Tactile SW</td><td>B3F + B32-3000</td><td>Omron</td><td>2 each</td></tr>
-<tr><td>  or</td><td>TVDP01-G73BB with black cap</td><td>Zhejiang Jianfu Electronics</td><td>2</td></tr>
 <tr><td>USB connector</td><td>ZX62R-B-5P</td><td>Hirose</td><td>1</td></tr>
 <tr><td>PCB connector header</td><td>B3B-XH-A(LF)(SN)</td><td>JST</td><td>6</td></tr>
 <tr><td>PCB connector header</td><td>B2B-XH-A(LF)(SN)</td><td>JST</td><td>1</td></tr>
@@ -58,21 +58,21 @@ Gerber files are available from the 'gerber' folder. <BR>
 <tr><td>Pin header</td><td>6p</td><td>-</td><td>1</td></tr>
 <tr><td>Case</td><td>LC135-F4-W</td><td>Takachi</td><td>1</td></tr>
 <tr><td>  or</td><td>LC165H-M4-W</td><td>Takachi</td><td>1</td></tr>
-<tr><td>Bolts & nuts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5</td></tr>
+<tr><td>Bolts & nuts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5 each</td></tr>
 <tr><td>Spacer</td><td>3 mm x 5 mm height, plastic</td><td>-</td><td>2~5</td></tr>
 <tr><td>Rubber bumpon</td><td>SJ-5312</td><td>3M</td><td>2</td></tr>
 </table>
 
 ## Host side coding
-The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with terminal softwares or can be processed with dedicated host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
+The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with terminal softwares or can be processed with any host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
 
-In the Bluetooth keyboard mode of the original version, the input characters come through as keyboard inputs, so they can be used as accelerator keys. By associating these characters with target routines, software functions are invoked by the dial/button operations.<BR>
+In the Bluetooth keyboard mode of the original version, the input characters come through as keyboard inputs, so they can be used as accelerator keys. By associating these characters with target routines, software functions are invoked by the dial/button operations without any additional coding.<BR>
 
 ## Tips
 Rubber bumpons on the device back are essential. Without these bumpons, the device itself rotates when you rotate knobs. We recommend SJ-5312 bumpons of 3M.  
 <IMG alt=overall src="pics/rubberBumpons.png"><BR>
 
-We use connector cables to wire rotary encoders. This is because the encoders often go wrong when we use the device on a daily basis, so we have to replace them on the spot. There would be other workarounds but this seems easiest and cheapest.  
+We use connector cables to wire rotary encoders. This is because the encoders often go wrong when we use the device on a daily basis. There would be other workarounds but this seems easiest and cheapest.  
 <IMG alt=inside src="pics/inside200530.png"><BR>
 
 ## Variations
