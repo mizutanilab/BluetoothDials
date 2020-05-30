@@ -23,7 +23,11 @@ There's nothing special. The MCU (PIC16F1828) receives signals from rotary encod
 
 ## PCB gerbers
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
-Gerber files are available in the 'gerber' folder. <BR>
+Gerber files are available from the 'gerber' folder. <BR>
+
+##PCB and BOM
+<IMG alt=gerber src="pics/pcbtop.png"><BR>
+<IMG alt=gerber src="pics/pcbbottom.png"><BR>
 
 ## Host side coding
 The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with terminal softwares or can be processed with dedicated host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
@@ -40,6 +44,3 @@ We use connector cables to wire rotary encoders. This is because the encoders of
 ## Variations
 A portable model with a battery charging circuit. Its size is about 95 x 65 x 35 mm. It's equipped with wood knobs for the better usability. We purchased them as guitar knobs.   
 <IMG alt=overall src="pics/portableModel.png"><BR><br>
-The right one is an RS232C interface model for our desktop PCs. Conneting through RS232C is rather straightforward.  
-<IMG alt=overall src="pics/RS232Cmodels.png"><BR>
-<IMG alt=overall src="pics/RS232Cinside.png"><BR>
