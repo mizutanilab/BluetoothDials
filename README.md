@@ -23,15 +23,42 @@ There's nothing special. The MCU (PIC16F1828) receives signals from rotary encod
 
 ## PCB gerbers
 <IMG alt=gerber src="pics/boardR7_200430.png"><BR>
-<IMG alt=gerber src="pics/pcbtop.png" width="40%" height="40%"> <IMG alt=gerber src="pics/pcbbottom.png" width="40%" height="40%"><BR>
+<IMG alt=gerber src="pics/pcbtop.png" width="45%" height="45%"> <IMG alt=gerber src="pics/pcbbottom.png" width="45%" height="45%"><BR>
 Gerber files are available from the 'gerber' folder. <BR>
 
 ## BOM
 <table>
 <tr><th>Item</th><th>Description</th><th>Brand</th><th>QTY</th></tr>
 <tr><td>MCU</td><td>PIC16F1828</td><td>Microchip</td><td>1</td></tr>
-<tr><td>BT interaface</td><td>RN42</td><td>Microchip</td><td>1</td></tr>
-<tr><td>USB interaface</td><td>FT230XS</td><td>FTDI</td><td>1</td></tr>
+<tr><td>Bluetooth interface</td><td>RN42</td><td>Microchip</td><td>1</td></tr>
+<tr><td>USB interface</td><td>FT230XS</td><td>FTDI</td><td>1</td></tr>
+<tr><td>3V3 regulator</td><td>S-812C33AY-B-G</td><td>ABLIC</td><td>1</td></tr>
+<tr><td>PMOS FET</td><td>DMG3415U</td><td>Diodes</td><td>1</td></tr>
+<tr><td>LED</td><td>3 mm green LED</td><td>-</td><td>1</td></tr>
+<tr><td>Shottkey D</td><td>SD103A</td><td>PANJIT</td><td>1</td></tr>
+<tr><td>D</td><td>1N4148</td><td>Fairchild</td><td>1</td></tr>
+<tr><td>C</td><td>10u ceramic</td><td>-</td><td>1</td></tr>
+<tr><td>C</td><td>0.1u ceramic</td><td>-</td><td>2</td></tr>
+<tr><td>C</td><td>47p ceramic</td><td>-</td><td>2</td></tr>
+<tr><td>R</td><td>10k</td><td>-</td><td>3</td></tr>
+<tr><td>R</td><td>560R</td><td>-</td><td>3</td></tr>
+<tr><td>R</td><td>27R</td><td>-</td><td>2</td></tr>
+<tr><td>EMI filter</td><td>DSS1NB32A103</td><td>Murata</td><td>1</td></tr>
+<tr><td>Rotary encorder</td><td>PEC11R--4215K-N0024</td><td>Bourns</td><td>6</td></tr>
+<tr><td>Knob</td><td>RS PRO 777-7296</td><td>RS</td><td>6</td></tr>
+<tr><td>  or</td><td>11K5013-KMNB</td><td>Grayhill</td><td>6</td></tr>
+<tr><td>Tactile SW</td><td>TVDP01-G73BB with black cap</td><td>Zhejiang Jianfu Electronics</td><td>2</td></tr>
+<tr><td>USB connector</td><td>ZX62R-B-5P</td><td>Hirose</td><td>2</td></tr>
+<tr><td>PCB connector housing</td><td>XHP-3</td><td>JST</td><td>12</td></tr>
+<tr><td>PCB connector housing</td><td>XHP-2</td><td>JST</td><td>1</td></tr>
+<tr><td>PCB connector contact</td><td>SXH-001T-P0.6</td><td>JST</td><td>38</td></tr>
+<tr><td>PCB connector header</td><td>B3B-XH-A(LF)(SN)</td><td>JST</td><td>6</td></tr>
+<tr><td>PCB connector header</td><td>B2B-XH-A(LF)(SN)</td><td>JST</td><td>1</td></tr>
+<tr><td>Pin header</td><td>6p</td><td>-</td><td>1</td></tr>
+<tr><td>Case</td><td>LC135-F4-W</td><td>Takachi</td><td>1</td></tr>
+<tr><td>  or</td><td>LC165H-M4-W</td><td>Takachi</td><td>1</td></tr>
+<tr><td>Bolts & nuts</td><td>M3 x 12 mm, flat head</td><td>-</td><td>2~5</td></tr>
+<tr><td>Spacer</td><td>3 mm x 5 mm height, plastic</td><td>-</td><td>2~5</td></tr>
 </table>
 
 ## Host side coding
