@@ -1,6 +1,6 @@
 # Bluetooth Dials
 
-The former RS232C model is <a href="https://github.com/mizutanilab/BluetoothDialsRS232C">here</a>.
+The left one is the USB model here and the right one is the former <a href="https://github.com/mizutanilab/BluetoothDialsRS232C">RS232C model</a>.
 
 <IMG alt=overall src="pics/overall.png"><BR>
 
