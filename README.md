@@ -1,7 +1,7 @@
 # Bluetooth Dials
 
-The left one is the USB model here and the right one is the former <a href="https://github.com/mizutanilab/BluetoothDialsRS232C">RS232C model</a>.
-
+The left one is the USB model shown here and the right one is the former 
+<a href="https://github.com/mizutanilab/BluetoothDialsRS232C">RS232C model</a>.
 <IMG alt=overall src="pics/overall.png"><BR>
 
 Bluetooth Dials is a wireless input device for operating multiple parameters with dials and buttons. We use this device to rotate 3D structures, move them along the x/y/z axes, adjust the contrast and brightness, zoom in/out, move movie frames forward/backward, and so on. It has dials and buttons and sends your operation through its Bluetooth interface or USB port to your PC. In 1990's, dial/button boxes were commercially available from graphics workstation manufacturers, but today we can't find such multiple-dial devices. The most similar one is Microsoft Surface Dial, but it has only one knob, so it does not meet our needs. Bluetooth Dials is a wireless version of the historic dial/button box. It's compatible with our <a href="https://github.com/mizutanilab/RecView">RecView</a> and <a href="https://github.com/mizutanilab/MCTrace">MCTrace</a> softwares. We usually use a mouse with the right hand and this device with the left hand to operate our softwares.<br>
@@ -14,8 +14,6 @@ The Bluetooth interface of this device is RN42 (Roving Networks / Microchip). A 
 The firmware sends dial/button operations to USB COM port or to virtual COM port associated with the Bluetooth interface. You can find the COM port in the Dialbox dialog of RecView and MCTrace. The virtual COM port number of the Bluetooth interface can also be found from: Bluetooth icon in the lower right -> show devices -> other options -> COM port tab.  
 
 In the default boot, Bluetooth sniffing with a 500 ms interval is enabled (RN42 command: SW,0320) to reduce the battery consumption, but a certain laptop seems not compatible with sniffing. The sniffing is disabled by pressing the lower button while setting batteries. If it's connected with a USB cable, the Bluetooth interface gets turned off. 
-
-The original firmware had two modes: serial mode and keyboard mode, though the present release only runs in the serial mode for simplicity. The keyboard mode of the original firmware was enabled by pressing the upper button while setting batteries. In the keyboard mode (though it's not available), the device was recognized as a Bluetooth keyboard. Dial/button operations were treated as if they are keyboard inputs.  
 
 ## Schematic
 <IMG alt=schematic src="pics/BluetoothDialsR7schematic.png"><BR>
@@ -67,17 +65,15 @@ You may also need tools, such as a crimping tool for XH connectors, a PIC progra
 ## Host side coding
 The device encodes dial/button operations into ASCII characters Z/X (CCW/CW of the lower left dial), A/S (middle left), Q/W (upper left), C/V (lower right), D/F (middle right), E/R (upper right), G (lower button), and T (upper button) and transmits them through the Bluetooth interface and to the USB interface. These character codes can be monitored with a terminal software or can be processed with any host-side applications. Please find a code example in files <a href="https://github.com/mizutanilab/RecView/blob/master/source/DlgDialbox.cpp">DlgDialbox.cpp</a> and <a href="https://github.com/mizutanilab/RecView/blob/master/source/MainFrm.cpp">MainFrm.cpp</a> of <a href="https://github.com/mizutanilab/RecView">RecView</a>.
 
-In the Bluetooth keyboard mode of the original version, the input characters come through as keyboard inputs, so they can be used as accelerator keys. By associating these characters with target routines, software functions are invoked by the dial/button operations without any additional coding.<BR>
-
 ## Tips
-Rubber bumpons on the device back are essential. Without these bumpons, the device itself rotates when you rotate knobs. We recommend SJ-5312 bumpons of 3M.  
+Rubber bumpons on the device back are essential. Without these bumpons, the device itself rotates when you rotate knobs.  
 <IMG alt=overall src="pics/rubberBumpons.png"><BR>
 
 We use connector cables to wire rotary encoders. This is because the encoders often go wrong when we use the device on a daily basis. Wiring with connector cables makes it easy to replace rotary encoders. There would be other workarounds but this seems easiest and cheapest.  
 <IMG alt=inside src="pics/inside200530.png"><BR>
 
 ## Variations
-A portable model with a battery charging circuit. Its size is about 95 x 65 x 35 mm. It's equipped with wood knobs for the better usability. We purchased them as guitar knobs.   
+A portable model with a battery charging circuit. It's about 95 x 65 x 35 mm, and equipped with wood knobs for better usability. We purchased them as guitar knobs.  
 <IMG alt=overall src="pics/portableModel.png"><BR><br>
-This is one of the prototypes. You can make it without PCB like this.<BR> 
+A prototype. It's made from almost the same parts but using a universal board.<BR> 
 <IMG alt=overall src="pics/prototype.png"> <IMG alt=overall src="pics/prototypeInside.png">
