@@ -62,8 +62,13 @@ void wait(int icycle) {
 	for (int i=0; i<icycle; i++) {}
 }
 
-#define NINPUT 8
-unsigned char ucEnc[NINPUT][4];
+#define NDIAL 6
+#define NPUSHSW 2
+#define NINPUT (NDIAL+NPUSHSW)
+#define NTICK 4
+#define NTICKMASK (NTICK-1)
+unsigned char ucEnc[NINPUT][NTICK];
+unsigned char ucEdir[NDIAL][NTICK];
 unsigned int uiTick;
 
 void initMCU(void){
@@ -78,7 +83,10 @@ void initMCU(void){
 
 	uiTick = 0;
 	for (uc0=0; uc0<NINPUT; uc0++) {
-		for (uc1=0; uc1<4; uc1++) {ucEnc[uc0][uc1] = 1;}
+		for (uc1=0; uc1<NTICK; uc1++) {
+			ucEnc[uc0][uc1] = 1;
+			if (uc0 < NDIAL) ucEdir[uc0][uc1] = 0;
+		}
 	}
 
 //Timer1: 3.8 Hz interrupt when Fosc = 8 MHz
@@ -232,6 +240,7 @@ void initBluetooth() {
 
 void main(void){
 	unsigned char uc0, uc1, uc2, uc3;
+	unsigned char ucx, ucDirSum;
 
 	initMCU();
 	if (ucMode & MODE_BLUETOOTH) initBluetooth();
@@ -240,7 +249,7 @@ void main(void){
 	while (1) {
 		uiTick++;
 
-		uc0 = (uiTick & 0x03);
+		uc0 = (uiTick & NTICKMASK);
 		ucEnc[0][uc0] = ENC0CLK;
 		ucEnc[1][uc0] = ENC1CLK;
 		ucEnc[2][uc0] = ENC2CLK;
@@ -249,33 +258,47 @@ void main(void){
 		ucEnc[5][uc0] = ENC5CLK;
 		ucEnc[6][uc0] = PUSH_SW1 ? 0 : 1;//detect switch release
 		ucEnc[7][uc0] = PUSH_SW2 ? 0 : 1;
-		uc1 = (uc0 + 4 - 1) & 0x03;
-		uc2 = (uc0 + 4 - 2) & 0x03;
+		uc1 = (uc0 + NTICK - 1) & NTICKMASK;
+		uc2 = (uc0 + NTICK - 2) & NTICKMASK;
+		ucEdir[0][uc0] = ENC0DIR;
+		ucEdir[1][uc0] = ENC1DIR;
+		ucEdir[2][uc0] = ENC2DIR;
+		ucEdir[3][uc0] = ENC3DIR;
+		ucEdir[4][uc0] = ENC4DIR;
+		ucEdir[5][uc0] = ENC5DIR;
 		for (uc3=0; uc3<NINPUT; uc3++) {
-			if ((ucEnc[uc3][uc2]==1)&&(ucEnc[uc3][uc1]==0)&&(ucEnc[uc3][uc0]==0)) {//detect 'A terminal' = off-on-on
+			ucDirSum = 0;
+			for (ucx=2; ucx<NTICK; ucx++) {ucDirSum += ucEnc[uc3][(uc0 + NTICK - ucx) & NTICKMASK];}
+			if ((ucDirSum == NTICK-2)&&(ucEnc[uc3][uc1]==0)&&(ucEnc[uc3][uc0]==0)) {
+//			if ((ucEnc[uc3][uc2]==1)&&(ucEnc[uc3][uc1]==0)&&(ucEnc[uc3][uc0]==0)) {//detect 'A terminal' = off-on-on
+				ucDirSum = 0;
+				if (uc3 < NDIAL) {
+					for (ucx=0; ucx<NTICK; ucx++) {ucDirSum += ucEdir[uc3][ucx];}
+					if (ucDirSum < NTICK/2) ucDirSum = 0;
+				}
 				switch (uc3) {
 					case 0: {
-						if (ENC0DIR) {while(!PIR1bits.TXIF);  TXREG = ENC0FWD;}
+						if (ucDirSum) {while(!PIR1bits.TXIF);  TXREG = ENC0FWD;}
 						else {while(!PIR1bits.TXIF);  TXREG = ENC0REV;}
 						break;}
 					case 1: {
-						if (ENC1DIR) {while(!PIR1bits.TXIF);  TXREG = ENC1FWD;}
+						if (ucDirSum) {while(!PIR1bits.TXIF);  TXREG = ENC1FWD;}
 						else {while(!PIR1bits.TXIF);  TXREG = ENC1REV;}
 						break;}
 					case 2: {
-						if (ENC2DIR) {while(!PIR1bits.TXIF);  TXREG = ENC2FWD;}
+						if (ucDirSum) {while(!PIR1bits.TXIF);  TXREG = ENC2FWD;}
 						else {while(!PIR1bits.TXIF);  TXREG = ENC2REV;}
 						break;}
 					case 3: {
-						if (ENC3DIR) {while(!PIR1bits.TXIF);  TXREG = ENC3FWD;}
+						if (ucDirSum) {while(!PIR1bits.TXIF);  TXREG = ENC3FWD;}
 						else {while(!PIR1bits.TXIF);  TXREG = ENC3REV;}
 						break;}
 					case 4: {
-						if (ENC4DIR) {while(!PIR1bits.TXIF);  TXREG = ENC4FWD;}
+						if (ucDirSum) {while(!PIR1bits.TXIF);  TXREG = ENC4FWD;}
 						else {while(!PIR1bits.TXIF);  TXREG = ENC4REV;}
 						break;}
 					case 5: {
-						if (ENC5DIR) {while(!PIR1bits.TXIF);  TXREG = ENC5FWD;}
+						if (ucDirSum) {while(!PIR1bits.TXIF);  TXREG = ENC5FWD;}
 						else {while(!PIR1bits.TXIF);  TXREG = ENC5REV;}
 						break;}
 					case 6: {
